@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شرح سمة target في HTML</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Cairo", Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+      color: #333;
+      line-height: 1.9;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(90deg, #5b86e5, #36d1dc);
+      color: white;
+      padding: 35px 20px;
+      border-radius: 18px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .author {
+      margin-top: 12px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .explanation {
+      background: #ffffff;
+      padding: 22px 28px;
+      border-right: 5px solid #5b86e5;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+    }
+
+    /* شبكة 2×2 */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* ألوان خلفية خفيفة لكل مربع */
+    .blank   { background: #e8f7ff; }
+    .self    { background: #fef6e4; }
+    .parent  { background: #f0f7ec; }
+    .top     { background: #f8eefc; }
+
+    .card h2 {
+      font-size: 1.5rem;
+      color: #444;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .example {
+      background: #ffffffaa;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      border: 1px solid #d0e6ff;
+    }
+
+    .demo-btn {
+      background: linear-gradient(to right, #5b86e5, #36d1dc);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 1rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .demo-btn:hover { opacity: 0.85; }
+
+    .summary {
+      background: white;
+      padding: 28px;
+      margin-top: 45px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    }
+
+    .summary h2 {
+      text-align: center;
+      color: #5b86e5;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th { background: #f7f7f7; }
+    .value {
+      font-weight: bold;
+      color: #5b86e5;
+      font-family: monospace;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    @media (max-width: 700px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>السمة target في HTML</h1>
+      <p>كيفية التحكم في مكان فتح الروابط باستخدام قيم مختلفة لسمة target</p>
+      <div class="author">إعداد: أحمد شاكر</div>
+    </header>
+
+    <div class="explanation">
+      <p>السمة <code>target</code> تُستخدم مع الوسم <code>&lt;a&gt;</code> لتحديد مكان فتح الرابط عند النقر عليه. فيما يلي القيم المختلفة وكيفية استخدامها:</p>
+    </div>
+
+    <div class="cards">
+      <div class="card blank">
+        <h2>target="_blank"</h2>
+        <p>يفتح الرابط في نافذة أو تبويب جديد.</p>
+        <div class="example">
+&lt;a href="https://example.com" target="_blank"&gt;<br>
+  افتح في نافذة جديدة<br>
+&lt;/a&gt;
+        </div>
+        <a href="https://example.com" target="_blank" class="demo-btn">تجربة فتح في نافذة جديدة</a>
+      </div>
+
+      <div class="card self">
+        <h2>target="_self"</h2>
+        <p>يفتح الرابط في نفس التبويب الحالي (السلوك الافتراضي).</p>
+        <div class="example">
+&lt;a href="https://example.com" target="_self"&gt;<br>
+  افتح في نفس الصفحة<br>
+&lt;/a&gt;
+        </div>
+        <a href="https://example.com" target="_self" class="demo-btn">تجربة فتح في نفس الصفحة</a>
+      </div>
+
+      <div class="card parent">
+        <h2>target="_parent"</h2>
+        <p>يفتح الرابط في الإطار الأب (عند استخدام iframes).</p>
+        <div class="example">
+&lt;a href="https://example.com" target="_parent"&gt;<br>
+  افتح في الإطار الأب<br>
+&lt;/a&gt;
+        </div>
+        <a href="https://example.com" target="_parent" class="demo-btn">تجربة (يتطلب iframe)</a>
+      </div>
+
+      <div class="card top">
+        <h2>target="_top"</h2>
+        <p>يفتح الرابط في أعلى مستوى من الصفحة (خارج أي إطار).</p>
+        <div class="example">
+&lt;a href="https://example.com" target="_top"&gt;<br>
+  افتح في الإطار العلوي<br>
+&lt;/a&gt;
+        </div>
+        <a href="https://example.com" target="_top" class="demo-btn">تجربة (يتطلب iframe)</a>
+      </div>
+    </div>
+
+    <div class="summary">
+      <h2>ملخص سمة target</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>القيمة</th>
+            <th>الوصف</th>
+            <th>الاستخدام</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="value">_blank</td>
+            <td>يفتح في تبويب جديد</td>
+            <td>لإبقاء المستخدم على موقعك</td>
+          </tr>
+          <tr>
+            <td class="value">_self</td>
+            <td>يفتح في نفس الصفحة (افتراضي)</td>
+            <td>لاستبدال المحتوى الحالي</td>
+          </tr>
+          <tr>
+            <td class="value">_parent</td>
+            <td>يفتح في الإطار الأب</td>
+            <td>عند استخدام iframes</td>
+          </tr>
+          <tr>
+            <td class="value">_top</td>
+            <td>يفتح في أعلى إطار</td>
+            <td>للخروج من جميع الإطارات</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>تم إعداد هذا الشرح بواسطة <strong>أحمد شاكر</strong> لمساعدة المطورين على فهم سمة target في HTML.</p>
+    </footer>
+  </div>
+</body>
+</html>

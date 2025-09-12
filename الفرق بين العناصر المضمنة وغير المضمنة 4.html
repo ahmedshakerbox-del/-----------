@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفرق بين العناصر المضمنة والكتلية</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f0f8ff;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            margin-bottom: 30px;
+        }
+
+        .example {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            direction: ltr;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .example div, .example span, .example a {
+            padding: 12px;
+            margin: 5px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .block-example div {
+            background: #4dabf7;
+            color: #fff;
+            border: 2px solid #2196f3;
+            flex: 1 1 100%;
+        }
+
+        .inline-example span {
+            background: #ffe082;
+            color: #444;
+            border: 2px solid #ffca28;
+        }
+
+        .inline-block-example a {
+            background: #81c784;
+            color: #fff;
+            border: 2px solid #4caf50;
+            display: inline-block;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: right;
+            border: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #d6eaf8;
+        }
+
+        .note {
+            background: #fff9c4;
+            padding: 15px;
+            border-right: 5px solid #fbc02d;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .code {
+            font-family: 'Courier New', monospace;
+            background: #f0f0f0;
+            color: #333;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .property {
+            color: #2980b9;
+        }
+
+        .value {
+            color: #e67e22;
+        }
+
+        .comment {
+            color: #7f8c8d;
+        }
+
+        .visual-demo {
+            background: #fefefe;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .box {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            line-height: 80px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 12px;
+            color: white;
+            font-size: 1em;
+        }
+
+        .block-box {
+            background: #3498db;
+        }
+
+        .inline-box {
+            background: #f1c40f;
+            display: inline;
+            color: #333;
+        }
+
+        .inline-block-box {
+            background: #2ecc71;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>الفرق بين العناصر المضمنة والعناصر الكتلية</h1>
+        <p style="color:#fff;">شرح مفصل للفرق بين عناصر HTML عندما تكون inline أو block أو inline-block</p>
+    </header>
+    
+    <div class="container">
+        <div>
+            <div class="section">
+                <h2>العناصر الكتلية (Block Elements)</h2>
+                <p>العناصر الكتلية تبدأ دائماً بسطر جديد وتمتد لعرض ال parent بالكامل.</p>
+                
+                <div class="example block-example">
+                    <div>عنصر div الأول (Block)</div>
+                    <div>عنصر div الثاني (Block)</div>
+                    <div>عنصر div الثالث (Block)</div>
+                </div>
+                
+                <div class="code">
+                    <span class="comment">&lt;!-- العناصر الكتلية تبدأ بسطر جديد --&gt;</span><br>
+                    &lt;div&gt;عنصر div الأول (Block)&lt;/div&gt;<br>
+                    &lt;div&gt;عنصر div الثاني (Block)&lt;/div&gt;<br>
+                    &lt;div&gt;عنصر div الثالث (Block)&lt;/div&gt;
+                </div>
+                
+                <div class="note">
+                    <p><strong>ملاحظة:</strong> من الأمثلة على العناصر الكتلية: &lt;div&gt;, &lt;p&gt;, &lt;h1&gt;-&lt;h6&gt;, &lt;section&gt;, &lt;ul&gt;, &lt;li&gt;</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>العناصر المضمنة كتلياً (Inline-Block Elements)</h2>
+                <p>العناصر المضمنة كتلياً تتصرف مثل العناصر المضمنة ولكن يمكن تحديد أبعادها (عرض وارتفاع).</p>
+                
+                <div class="example inline-block-example">
+                    <a href="#">رابط 1 (Inline-Block)</a>
+                    <a href="#">رابط 2 (Inline-Block)</a>
+                    <a href="#">رابط 3 (Inline-Block)</a>
+                </div>
+                
+                <div class="code">
+                    <span class="comment">&lt;!-- CSS --&gt;</span><br>
+                    <span class="property">a</span> {<br>
+                    &nbsp;&nbsp;<span class="property">display</span>: <span class="value">inline-block</span>;<br>
+                    &nbsp;&nbsp;<span class="property">width</span>: <span class="value">120px</span>;<br>
+                    &nbsp;&nbsp;<span class="property">height</span>: <span class="value">40px</span>;<br>
+                    }
+                </div>
+                
+                <div class="note">
+                    <p><strong>ملاحظة:</strong> العناصر المضمنة كتلياً تسمح بتحديد الأبعاد والهوامش من جميع الجهات مع بقائها في نفس السطر.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="section">
+                <h2>العناصر المضمنة (Inline Elements)</h2>
+                <p>العناصر المضمنة لا تبدأ بسطر جديد وتأخذ فقط المساحة الضرورية لمحتواها.</p>
+                
+                <div class="example inline-example">
+                    <span>عنصر span الأول (Inline)</span>
+                    <span>عنصر span الثاني (Inline)</span>
+                    <span>عنصر span الثالث (Inline)</span>
+                </div>
+                
+                <div class="code">
+                    <span class="comment">&lt;!-- العناصر المضمنة تبقى في نفس السطر --&gt;</span><br>
+                    &lt;span&gt;عنصر span الأول (Inline)&lt;/span&gt;<br>
+                    &lt;span&gt;عنصر span الثاني (Inline)&lt;/span&gt;<br>
+                    &lt;span&gt;عنصر span الثالث (Inline)&lt;/span&gt;
+                </div>
+                
+                <div class="note">
+                    <p><strong>ملاحظة:</strong> من الأمثلة على العناصر المضمنة: &lt;span&gt;, &lt;a&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;img&gt;</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>مقارنة بين أنواع العناصر</h2>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>السمة</th>
+                        <th>Block</th>
+                        <th>Inline</th>
+                        <th>Inline-Block</th>
+                    </tr>
+                    <tr>
+                        <td>يبدأ بسطر جديد</td>
+                        <td>نعم</td>
+                        <td>لا</td>
+                        <td>لا</td>
+                    </tr>
+                    <tr>
+                        <td>يمكن تحديد العرض والارتفاع</td>
+                        <td>نعم</td>
+                        <td>لا</td>
+                        <td>نعم</td>
+                    </tr>
+                    <tr>
+                        <td>يمكن إضافة هوامش من جميع الجهات</td>
+                        <td>نعم</td>
+                        <td>لا (فقط يمين ويسار)</td>
+                        <td>نعم</td>
+                    </tr>
+                    <tr>
+                        <td>يمكن إضافة padding من جميع الجهات</td>
+                        <td>نعم</td>
+                        <td>نعم</td>
+                        <td>نعم</td>
+                    </tr>
+                    <tr>
+                        <td>يأخذ عرض ال parent</td>
+                        <td>نعم</td>
+                        <td>لا</td>
+                        <td>لا</td>
+                    </tr>
+                    <tr>
+                        <td>أمثلة</td>
+                        <td>div, p, section</td>
+                        <td>span, a, strong</td>
+                        <td>img, button</td>
+                    </tr>
+                </table>
+                
+                <div class="visual-demo">
+                    <div class="box block-box">Block</div>
+                    <span class="box inline-box">Inline</span>
+                    <div class="box inline-block-box">Inline-Block</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
